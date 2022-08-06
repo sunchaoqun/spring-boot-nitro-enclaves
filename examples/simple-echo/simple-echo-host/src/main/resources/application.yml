@@ -1,0 +1,10 @@
+nitro:
+  enclave:
+    cid: 4
+    port: 5000
+    network-mode: vsock
+
+logging:
+  level:
+    com.github: debug
+    
