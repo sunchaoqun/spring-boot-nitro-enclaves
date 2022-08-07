@@ -14,32 +14,33 @@ import com.github.mrgatto.simlpeecho.model.MyPojoData;
 import com.github.mrgatto.simlpeecho.model.MyPojoDataResult;
 
 @SpringBootApplication
-@ComponentScan({ "com.github.mrgatto.simpleecho" })
+@ComponentScan({ "com.github.mrgatto" })
 @EnableNitroEnclavesHostSide
+
 public class NitroEnclaveHostApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(NitroEnclaveHostApplication.class, args);
 
-		NitroEnclaveClient client = ctx.getBean(NitroEnclaveClient.class);
+		// NitroEnclaveClient client = ctx.getBean(NitroEnclaveClient.class);
 
-		MyPojoData pojo = new MyPojoData();
-		pojo.setValue("sunchaoqun@126.com");
+		// MyPojoData pojo = new MyPojoData();
+		// pojo.setValue("sunchaoqun@126.com");
 
-		EnclaveRequest<MyPojoData> request = new EnclaveRequest<>();
-		request.setAction(Actions.ECHO.name());
-		request.setData(pojo);
+		// EnclaveRequest<MyPojoData> request = new EnclaveRequest<>();
+		// request.setAction(Actions.ECHO.name());
+		// request.setData(pojo);
 
-		EnclaveResponse<MyPojoDataResult> response = client.send(request);
+		// EnclaveResponse<MyPojoDataResult> response = client.send(request);
 
-		if (response.getIsError()) {
-			System.out.println(String.format("Something went wrong: %s", response.getError()));
-			System.out.println(response.getErrorStacktrace());
-		} else {
-			System.out.println(response.getData().getValue());
-		}
+		// if (response.getIsError()) {
+		// 	System.out.println(String.format("Something went wrong: %s", response.getError()));
+		// 	System.out.println(response.getErrorStacktrace());
+		// } else {
+		// 	System.out.println(response.getData().getValue());
+		// }
 
-		System.out.println(String.format("Enclave execution time %sms", response.getDuration()));
+		// System.out.println(String.format("Enclave execution time %sms", response.getDuration()));
 
 	}
 

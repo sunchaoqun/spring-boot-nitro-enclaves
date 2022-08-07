@@ -2,3 +2,6 @@ nitro:
   enclave:
     port: 5000
     network-mode: tcp
+
+server:
+  port: 7070

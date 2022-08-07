@@ -56,6 +56,13 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	@Autowired
 	private NsmClient nsmClient;
 
+	BasicAWSCredentials awsCreds = new BasicAWSCredentials(
+		"AKIA4A43GRDZ2TP76CAB", 
+		"a/rwMzS+T2o8cPHhLc4MmhzDOnu0Byhfj059ZOdd"
+	);
+
+	private String keyId = "1b6626cb-8350-4031-a1e6-bd2d85b64d1f";
+
 	@Override
 	public boolean canHandle(String action) {
 		return Actions.ECHO.name().equalsIgnoreCase(action);
@@ -78,8 +85,6 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 
 	private String encrypt(String pureString){
 
-		BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIA5O42HQLV7EXYTF6O", "WioJB9q5sXGRZJdBgei2vBAQytNZp9p011IRv6Oe");
-
 		Process process = null;
 
 		// try {
@@ -93,8 +98,6 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 			.withCredentials(new AWSStaticCredentialsProvider(awsCreds))
 			.withRegion(Regions.AP_SOUTHEAST_1)
 			.build();
-
-		String keyId = "8bf076b5-5b07-4281-b625-0d42bf9ab400";
 
 		ByteBuffer plaintext = ByteBuffer.wrap(pureString.getBytes());
 		EncryptRequest req = new EncryptRequest().withKeyId(keyId).withPlaintext(plaintext);
@@ -111,8 +114,6 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	}
 
 	private void saveToDynamoDB(MyPojoData data){
-
-		BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIA5O42HQLV7EXYTF6O", "WioJB9q5sXGRZJdBgei2vBAQytNZp9p011IRv6Oe");
 
 		Process process = null;
 

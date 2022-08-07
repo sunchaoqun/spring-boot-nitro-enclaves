@@ -4,6 +4,14 @@ nitro:
     port: 5000
     network-mode: vsock
 
+server:
+  port: 7070
+
+dynamodb:
+  init: 
+    environment: 
+      enabled: true
+  
 logging:
   level:
     com.github: debug
