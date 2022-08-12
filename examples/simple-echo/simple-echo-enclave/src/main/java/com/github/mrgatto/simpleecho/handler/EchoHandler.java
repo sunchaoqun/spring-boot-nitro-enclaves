@@ -12,6 +12,8 @@ import com.github.mrgatto.simlpeecho.model.MyPojoDataResult;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.BasicSessionCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.InstanceProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import org.apache.commons.lang3.StringUtils;
 
@@ -56,12 +58,16 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	@Autowired
 	private NsmClient nsmClient;
 
-	BasicAWSCredentials awsCreds = new BasicAWSCredentials(
-		"AKIA4A43GRDZ2TP76CAB", 
-		"a/rwMzS+T2o8cPHhLc4MmhzDOnu0Byhfj059ZOdd"
-	);
+	AWSCredentialsProvider awsCredentialsProvider = new AWSStaticCredentialsProvider(new BasicAWSCredentials(
+		"AKIA6Q6KSKLXSKQKWZF5", 
+		"0ZV5Iqjgw5K4ABX66fnFgIoZ73sJEcIJjvjnvsgu"
+	));
 
-	private String keyId = "1b6626cb-8350-4031-a1e6-bd2d85b64d1f";
+	// AWSCredentialsProvider awsCredentialsProvider = new InstanceProfileCredentialsProvider(true);
+
+	private String keyId = "fe6ed4bf-f426-49c2-bf92-9235515ed546";
+
+	private String region = "ap-southeast-1";
 
 	@Override
 	public boolean canHandle(String action) {
@@ -95,8 +101,8 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 
 		AWSKMS AWSKMS_CLIENT = AWSKMSClientBuilder
 			.standard()
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds))
-			.withRegion(Regions.AP_SOUTHEAST_1)
+			.withCredentials(awsCredentialsProvider)
+			.withRegion(region)
 			.build();
 
 		ByteBuffer plaintext = ByteBuffer.wrap(pureString.getBytes());
@@ -123,10 +129,12 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 		// 	System.out.println(e);
 		// }
 
+		System.out.println("-------------------------");
+
 		AmazonDynamoDB client = AmazonDynamoDBClientBuilder
 			.standard()
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds))
-			.withRegion(Regions.AP_SOUTHEAST_1)
+			.withCredentials(awsCredentialsProvider)
+			.withRegion(region)
 			.build();
 
 		DynamoDBMapper mapper = new DynamoDBMapper(client);
