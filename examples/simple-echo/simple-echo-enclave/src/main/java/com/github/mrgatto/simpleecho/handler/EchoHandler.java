@@ -59,13 +59,13 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	private NsmClient nsmClient;
 
 	AWSCredentialsProvider awsCredentialsProvider = new AWSStaticCredentialsProvider(new BasicAWSCredentials(
-		"AKIA6Q6KSKLXSKQKWZF5", 
-		"0ZV5Iqjgw5K4ABX66fnFgIoZ73sJEcIJjvjnvsgu"
+		"ASIAXYL7MGD4PZD5B6XL", 
+		"LO/SSz15qpZAxRpgHThEzxNcotr5yfxTs4ATlDBh"
 	));
 
 	// AWSCredentialsProvider awsCredentialsProvider = new InstanceProfileCredentialsProvider(true);
 
-	private String keyId = "fe6ed4bf-f426-49c2-bf92-9235515ed546";
+	private String keyId = "5aff16c0-eddb-48af-8de3-0c01b099c4c8";
 
 	private String region = "ap-southeast-1";
 
