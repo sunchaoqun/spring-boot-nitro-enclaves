@@ -59,8 +59,8 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	private NsmClient nsmClient;
 
 	AWSCredentialsProvider awsCredentialsProvider = new AWSStaticCredentialsProvider(new BasicAWSCredentials(
-		"ASIAXYL7MGD4PZD5B6XL", 
-		"LO/SSz15qpZAxRpgHThEzxNcotr5yfxTs4ATlDBh"
+		"AKIAXYL7MGD4PI355LQM", 
+		"yxMabRAAPPFTNejPk75W45P9di1bfAXuqpgK8Lpe"
 	));
 
 	// AWSCredentialsProvider awsCredentialsProvider = new InstanceProfileCredentialsProvider(true);
