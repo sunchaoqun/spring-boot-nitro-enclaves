@@ -59,8 +59,8 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	private NsmClient nsmClient;
 
 	AWSCredentialsProvider awsCredentialsProvider = new AWSStaticCredentialsProvider(new BasicAWSCredentials(
-		"AKIAXYL7MGD4PI355LQM", 
-		"yxMabRAAPPFTNejPk75W45P9di1bfAXuqpgK8Lpe"
+		"",
+		""
 	));
 
 	// AWSCredentialsProvider awsCredentialsProvider = new InstanceProfileCredentialsProvider(true);
@@ -79,12 +79,12 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	
 		saveToDynamoDB(data);
 
-		// String nsmModuleId = this.nsmClient.describeNsm().getModuleId();
+		String nsmModuleId = this.nsmClient.describeNsm().getModuleId();
 
 		MyPojoDataResult result = new MyPojoDataResult();
 
-		// result.setValue("Echo from Enclave " + nsmModuleId + ": " + data.getValue());
-		result.setValue("Echo from Enclave  : " + data.getValue());
+		result.setValue("Echo from Enclave " + nsmModuleId + ": " + data.getValue());
+		//result.setValue("Echo from Enclave  : " + data.getValue());
 
 		return result;
 	}

@@ -21,6 +21,7 @@ public class NitroEnclaveClient {
 	public NitroEnclaveClient(JsonMapper jsonMapper, HostClient hostClient) {
 		this.jsonMapper = jsonMapper;
 		this.hostClient = hostClient;
+		System.out.println(hostClient);
 	}
 
 	public <IN, OUT> EnclaveResponse<OUT> send(EnclaveRequest<IN> request) {
