@@ -9,6 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
+import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder;
+import com.amazonaws.services.securitytoken.model.AssumeRoleRequest;
+import com.amazonaws.services.securitytoken.model.AssumeRoleResult;
+import com.amazonaws.services.securitytoken.model.Credentials;
+import com.amazonaws.services.securitytoken.model.GetCallerIdentityRequest;
+import com.amazonaws.services.securitytoken.model.GetCallerIdentityResult;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.mrgatto.host.NitroEnclaveClient;
@@ -25,6 +32,24 @@ public class KafkaConsumer {
 
     @PostConstruct
     private void init(){
+    	
+    	AWSSecurityTokenService sts = AWSSecurityTokenServiceClientBuilder.defaultClient();
+    	
+    	GetCallerIdentityResult getCallerIdentityResult= sts.getCallerIdentity(new GetCallerIdentityRequest());
+    	
+    	System.out.println("CallerIdentityResult " + getCallerIdentityResult);
+    	
+		AssumeRoleResult assumeRoleResult = sts.assumeRole(new AssumeRoleRequest()
+				.withRoleArn("arn:aws:iam::925352035051:role/Admin")
+				.withExternalId("IsengardExternalId7W8xp2lkm7sr")
+				.withDurationSeconds(3600)
+				.withRoleSessionName("role-session"));
+
+		Credentials stsCredentials = assumeRoleResult.getCredentials();
+		
+		System.out.println("AccessKeyId " + stsCredentials.getAccessKeyId());
+		System.out.println("SecretAccessKey " + stsCredentials.getSecretAccessKey());
+		System.out.println("SessionToken " + stsCredentials.getSessionToken());
 
     }
 
