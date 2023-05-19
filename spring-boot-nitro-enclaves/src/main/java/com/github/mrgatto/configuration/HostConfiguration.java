@@ -24,7 +24,7 @@ public class HostConfiguration {
 	@Value("${nitro.enclave.port:5000}")
 	private Integer port;
 
-	@Value("${cid:0}")
+	@Value("${nitro.enclave.cid:0}")
 	private Integer cid;
 
 	@Bean
