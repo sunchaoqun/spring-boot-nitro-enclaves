@@ -1,5 +1,5 @@
 # FROM amazoncorretto:8u302
-FROM amazonlinux
+FROM amazonlinux:2
 
 RUN yum install python3 net-tools -y
 RUN yum install java-1.8.0-openjdk -y
