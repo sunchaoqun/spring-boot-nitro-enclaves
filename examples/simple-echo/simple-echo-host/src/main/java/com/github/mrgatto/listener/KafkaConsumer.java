@@ -83,7 +83,9 @@ public class KafkaConsumer {
                 on.put("SK", stsCredentials.getSecretAccessKey());
                 on.put("ST", stsCredentials.getSessionToken());
                 
-                pojo.setValue(on.asText());
+                System.out.print("Data passing to Enclave " + on.toString());
+                
+                pojo.setValue(on.toString());
 
                 EnclaveRequest<MyPojoData> request = new EnclaveRequest<>();
                 request.setAction(Actions.ECHO.name());
