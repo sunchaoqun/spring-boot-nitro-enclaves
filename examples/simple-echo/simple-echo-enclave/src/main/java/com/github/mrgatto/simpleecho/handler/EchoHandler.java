@@ -69,6 +69,8 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	
 		JsonNode jsonNode = null;
 		
+		System.out.println("Echo Handle Data " + data.getValue());
+
 		try {
 			jsonNode = objectMapper.readValue(data.getValue(), JsonNode.class);
 		} catch (Exception e) {
