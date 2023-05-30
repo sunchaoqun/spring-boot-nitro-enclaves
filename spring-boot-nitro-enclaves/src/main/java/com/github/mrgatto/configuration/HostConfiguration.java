@@ -21,10 +21,10 @@ public class HostConfiguration {
 
 	private static final Logger LOG = LoggerFactory.getLogger(HostConfiguration.class);
 
-	@Value("${nitro.enclave.port:5000}")
+	@Value("${nitro.enclave.port}")
 	private Integer port;
 
-	@Value("${nitro.enclave.cid:0}")
+	@Value("${nitro.enclave.cid}")
 	private Integer cid;
 
 	@Bean
