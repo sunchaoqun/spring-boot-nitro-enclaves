@@ -41,9 +41,10 @@ FROM amazonlinux:2 as image
 # Copying dependencies of the enclave apps from the 'full_image'
 # to shrink the final image size.
 #
+ENV cid=$nitro.enclave.cid
 COPY --from=full_image /ne-deps /
 
 COPY bin/enclave-wallet.eif /home
 COPY run.sh  /home
 
-CMD ["/home/run.sh"]
+CMD ["/home/run.sh","$cid"]

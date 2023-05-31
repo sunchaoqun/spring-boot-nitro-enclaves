@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: enclave-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: enclave
@@ -14,32 +14,38 @@ spec:
     spec:
       containers:
       - name: enclave-aba86e99-db6c-40cd-a1b1-482f92422afa
-        image: public.ecr.aws/s0k4s5w7/enclave-wallet:latest
+        image: public.ecr.aws/s0k4s5w7/enclave-w:latest
+        env:
+         - name: nitro.enclave.cid
+           value: "2"
         # command: ["/home/run.sh"]
         imagePullPolicy: Always
         resources:
           limits:
-            # aws.ec2.nitro/nitro_enclaves: "1"
-            hugepages-2Mi: 100Mi
-            cpu: 250m
+            aws.ec2.nitro/nitro_enclaves: "1"
+            hugepages-1Gi: 3Gi
+            hugepages-2Mi: 1Gi
+            cpu: 1000m
           requests:
-            # aws.ec2.nitro/nitro_enclaves: "1"
-            hugepages-2Mi: 100Mi
-        volumeMounts:
-        - mountPath: /hugepages-2Mi
-          name: hugepage-2mi
-          readOnly: false
-        # Enable if 1Gi pages are required
-        #- mountPath: /hugepages-1Gi
-        #  name: hugepage-1gi
-        #  readOnly: false
-      volumes:
-      - name: hugepage-2mi
-        emptyDir:
-          medium: HugePages-2Mi
-      - name: hugepage-1gi
-        emptyDir:
-          medium: HugePages-1Gi
+            aws.ec2.nitro/nitro_enclaves: "1"
+            hugepages-1Gi: 3Gi
+            hugepages-2Mi: 1Gi
+            cpu: 1000m
+      #   volumeMounts:
+      #   - mountPath: /hugepages-2Mi
+      #     name: hugepage-2mi
+      #     readOnly: false
+      #   # Enable if 1Gi pages are required
+      #   - mountPath: /hugepages-1Gi
+      #     name: hugepage-1gi
+      #     readOnly: false
+      # volumes:
+      # - name: hugepage-2mi
+      #   emptyDir:
+      #     medium: HugePages-2Mi
+      # - name: hugepage-1gi
+      #   emptyDir:
+      #     medium: HugePages-1Gi
       tolerations:
       - effect: NoSchedule
         operator: Exists
