@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enclave-kafka-consumer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enclave-kafka-consumer
+  template:
+    metadata:
+      labels:
+        app: enclave-kafka-consumer
+    spec:
+      containers:
+      - name: enclave-kafka-consumer-aba86e99-db6c-40cd-a1b1-482f92422afa
+        image: public.ecr.aws/s0k4s5w7/kafka-consumer:latest
+        env:
+        - name: nitro_enclave_cid
+          value: "4"
