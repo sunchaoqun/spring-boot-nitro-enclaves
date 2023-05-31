@@ -16,8 +16,8 @@ spec:
       - name: enclave-aba86e99-db6c-40cd-a1b1-482f92422afa
         image: public.ecr.aws/s0k4s5w7/enclave-w:latest
         env:
-         - name: nitro.enclave.cid
-           value: "2"
+         - name: nitro_enclave_cid
+           value: "4"
         # command: ["/home/run.sh"]
         imagePullPolicy: Always
         resources:
