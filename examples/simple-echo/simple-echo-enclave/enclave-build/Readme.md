@@ -7,7 +7,8 @@ mkdir bin
 docker build --network=host -t enclave-w .
 
 Test:
-docker run -ti -v /var/run/docker.sock:/var/run/docker.sock --device=/dev/nitro_enclaves:/dev/nitro_enclaves:rw enclave-w /bin/bash
+docker run -ti -v /var/run/docker.sock:/var/run/docker.sock --device=/dev/nitro_enclaves:/dev/nitro_enclaves:rw -e "nitro_enclave_cid=4" enclave-w
+
 
 
 nitro-cli terminate-enclave --all
