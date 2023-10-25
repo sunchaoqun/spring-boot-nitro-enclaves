@@ -18,7 +18,7 @@ mvn package
 ## Build Enclave image
 
 ```bash
-docker build ./simple-echo-enclave -t simple-echo-enclave
+docker build ./simple-echo-enclave -t simple-echo-enclave --build-arg arch="aarch64"
 nitro-cli build-enclave --docker-uri simple-echo-enclave:latest --output-file simple-echo-enclave.eif
 ```
 
