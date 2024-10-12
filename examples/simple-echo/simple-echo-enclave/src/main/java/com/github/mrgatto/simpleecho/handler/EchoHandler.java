@@ -53,9 +53,9 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	
 	AWSCredentialsProvider awsCredentialsProvider;
 
-	private String keyId = "3721a9ea-533e-448a-a61c-3523cb6d1caf";
+	private String keyId = "4257a12c-9129-4466-9801-96c7914a264c";
 
-	private String region = "eu-west-1";
+	private String region = "ap-southeast-1";
 
 	@Override
 	public boolean canHandle(String action) {
@@ -69,7 +69,7 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 	
 		JsonNode jsonNode = null;
 		
-		System.out.println("Echo Handle Data " + data.getValue());
+		// System.out.println("Echo Handle Data " + data.getValue());
 
 		try {
 			jsonNode = objectMapper.readValue(data.getValue(), JsonNode.class);
@@ -83,9 +83,9 @@ public class EchoHandler extends AbstractActionHandler<MyPojoData, MyPojoDataRes
 			jsonNode.get("ST").asText()
 		));
 		
-		saveToDynamoDB(jsonNode.get("email").asText());
+		// saveToDynamoDB(jsonNode.get("email").asText());
 
-		String nsmModuleId = this.nsmClient.describeNsm().getModuleId();
+		 String nsmModuleId = "Not for now";//this.nsmClient.describeNsm().getModuleId();
 
 		MyPojoDataResult result = new MyPojoDataResult();
 
